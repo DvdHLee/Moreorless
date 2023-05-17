@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTransition, animated } from 'react-spring';
 import Header from './components/Header';
 import Options from './components/Options';
+import Content from './components/Content';
 
 function App() {
   const [showOptions, setShowOptions] = useState(false);
@@ -32,6 +33,7 @@ function App() {
           </animated.div> : ''
         )}
       </div>
+      <Content></Content>
     </div>
   );
 }
