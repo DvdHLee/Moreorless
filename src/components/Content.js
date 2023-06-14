@@ -7,6 +7,9 @@ const Content = props => {
     const [questionNumber, setQuestionNumber] = useState(0);
     const [score, setScore] = useState(0);
     const [wrongNumberArray, setWrongNumberArray] = useState([]);
+    const [showNext, setShowNext] = useState(false);
+    const [showButtons, setShowButtons] = useState(true);
+    const [showSummary, setShowSummary] = useState(false);
     const answerArray = [];
 
     const questionArray = [
@@ -43,24 +46,76 @@ const Content = props => {
         }
     }
 
-    console.log(numberArray)
-    console.log(wrongNumberArray)
-    console.log(answerArray);
+    const clickedNext = () => {
+        if (questionNumber < 4) {
+            setQuestionNumber(questionNumber + 1);
+            setShowButtons(true);
+        }
+        setShowNext(false);
+    }
+
+    const clickedSummary = () => {
+
+    }
+
+    const clickedRight = () => {
+        setScore(score + 1);
+        setShowButtons(false);
+        if (questionNumber < 4) {
+            setShowNext(true);
+        } else {
+            setShowSummary(true);
+        }
+    }
+
+    const clickedWrong = () => {
+        setShowButtons(false);
+        if (questionNumber < 4) {
+            setShowNext(true);
+        } else {
+            setShowSummary(true);
+        }
+    }
 
     return (
         <div className="content">
             <p className="questionnumber">Question {questionNumber + 1}</p>
             <p className="score">Score: {score}</p>
             <p className="question">{wrongQuestionArray[questionNumber]}</p>
-            <button className="questionchoice">
-                <img className="questionchoiceimg" src="/assets/more.png" alt="more"></img>
-            </button>
-            <button className="questionchoice">
-                <p className="exact">{wrongNumberArray[questionNumber]}</p>
-            </button>
-            <button className="questionchoice">
-                <img className="questionchoiceimg" src="/assets/less.png" alt="less"></img>
-            </button>
+            {(answerArray[questionNumber] == 0)
+                ? <div>
+                    <button className={showButtons ? "questionchoicetop" : "disappear"} onClick={clickedRight}>
+                        <img className="questionchoiceimg" src="/assets/more.png" alt="more"></img>
+                    </button>
+                    <div className="answertop">{numberArray[questionNumber]}</div>
+                    <button className="questionchoicemid">
+                        <p className="exact">{wrongNumberArray[questionNumber]}</p>
+                    </button>
+                    <button className={showButtons ? "questionchoicebot" : "disappear"} onClick={clickedWrong}>
+                        <img className="questionchoiceimg" src="/assets/less.png" alt="less"></img>
+                    </button>
+                    <div className="answerbot">
+                        <img className="redx" src="/assets/redx.png" alt="red x"></img>
+                    </div>
+                </div>
+                : <div>
+                    <button className={showButtons ? "questionchoicetop" : "disappear"} onClick={clickedWrong}>
+                        <img className="questionchoiceimg" src="/assets/more.png" alt="more"></img>
+                    </button>
+                    <div className="answertop">
+                        <img className="redx" src="/assets/redx.png" alt="red x"></img>
+                    </div>
+                    <button className="questionchoicemid">
+                        <p className="exact">{wrongNumberArray[questionNumber]}</p>
+                    </button>
+                    <button className={showButtons ? "questionchoicebot" : "disappear"} onClick={clickedRight}>
+                        <img className="questionchoiceimg" src="/assets/less.png" alt="less"></img>
+                    </button>
+                    <div className="answerbot">{numberArray[questionNumber]}</div>
+                </div>
+            }
+            <button className={showNext ? "next" : "disappear"} onClick={clickedNext}>Next</button>
+            <button className={showSummary ? "next" : "disappear"} onClick={clickedSummary}>Summary</button>
         </div>
     )
 }

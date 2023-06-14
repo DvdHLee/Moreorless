@@ -37,28 +37,44 @@ function App() {
   }
 
   const onClickedInfo = () => {
-    setShowInfo(true);
+    if (showInfo) {
+      setShowInfo(false);
+    } else {
+      setShowInfo(true);
+    }
     setShowStats(false);
     setShowAbout(false);
     setShowSettings(false);
   }
 
   const onClickedStats = () => {
-    setShowStats(true);
+    if (showStats) {
+      setShowStats(false);
+    } else {
+      setShowStats(true);
+    }
     setShowInfo(false);
     setShowAbout(false);
     setShowSettings(false);
   }
 
   const onClickedAbout = () => {
-    setShowAbout(true);
+    if (showAbout) {
+      setShowAbout(false);
+    } else {
+      setShowAbout(true);
+    }
     setShowInfo(false);
     setShowStats(false);
     setShowSettings(false);
   }
 
   const onClickedSettings = () => {
-    setShowSettings(true);
+    if (showSettings) {
+      setShowSettings(false);
+    } else {
+      setShowSettings(true);
+    }
     setShowInfo(false);
     setShowStats(false);
     setShowAbout(false);
