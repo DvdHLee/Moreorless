@@ -5,9 +5,18 @@ import { useTransition, animated } from 'react-spring';
 import Header from './components/Header';
 import Options from './components/Options';
 import Content from './components/Content';
+import Info from './components/Info';
+import Stats from './components/Stats';
+import About from './components/About';
+import Settings from './components/Settings';
 
 function App() {
   const [showOptions, setShowOptions] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
+  const [showStats, setShowStats] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+
   const transition = useTransition(showOptions, {
     config: { mass: 0.1, friction: 7 },
     from: { x: 100, opacity: 0 },
@@ -21,6 +30,38 @@ function App() {
 
   const onClickedExit = () => {
     setShowOptions(false);
+    setShowInfo(false);
+    setShowStats(false);
+    setShowAbout(false);
+    setShowSettings(false);
+  }
+
+  const onClickedInfo = () => {
+    setShowInfo(true);
+    setShowStats(false);
+    setShowAbout(false);
+    setShowSettings(false);
+  }
+
+  const onClickedStats = () => {
+    setShowStats(true);
+    setShowInfo(false);
+    setShowAbout(false);
+    setShowSettings(false);
+  }
+
+  const onClickedAbout = () => {
+    setShowAbout(true);
+    setShowInfo(false);
+    setShowStats(false);
+    setShowSettings(false);
+  }
+
+  const onClickedSettings = () => {
+    setShowSettings(true);
+    setShowInfo(false);
+    setShowStats(false);
+    setShowAbout(false);
   }
 
   return (
@@ -29,11 +70,15 @@ function App() {
       <div className="optionscontainer">
         {transition((style, item) =>
           item ? <animated.div style={style}>
-            <Options onClickedExit={onClickedExit}></Options>
+            <Options onClickedExit={onClickedExit} onClickedInfo={onClickedInfo} onClickedStats={onClickedStats} onClickedAbout={onClickedAbout} onClickedSettings={onClickedSettings}></Options>
           </animated.div> : ''
         )}
       </div>
       <Content></Content>
+      <Info showInfo={showInfo}></Info>
+      <Stats showStats={showStats}></Stats>
+      <About showAbout={showAbout}></About>
+      <Settings showSettings={showSettings}></Settings>
     </div>
   );
 }

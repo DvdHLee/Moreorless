@@ -1,0 +1,17 @@
+.info {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    top: 100px;
+}
+
+.infobox {
+    z-index: 3;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 30px rgb(190, 190, 190);
+}
