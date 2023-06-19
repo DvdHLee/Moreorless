@@ -3,14 +3,53 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import './Content.css';
 
+function setWithExpiry(key, value, expiration) {
+    const item = {
+        value: value,
+        expiry: expiration,
+    }
+
+    localStorage.setItem(key, JSON.stringify(item))
+}
+
+function getWithExpiry(key) {
+    const jsonItem = localStorage.getItem(key);
+    if (!jsonItem) {
+        return null;
+    }
+
+    const item = JSON.parse(jsonItem);
+    const now = new Date();
+
+    if (now.getTime() > item.expiry) {
+        localStorage.removeItem(key);
+        return null;
+    }
+
+    return item.value;
+}
+
 const Content = props => {
-    const [questionNumber, setQuestionNumber] = useState(0);
-    const [score, setScore] = useState(0);
+    const midnight = new Date();
+    midnight.setHours(24,0,0,0);
+
+    if (!getWithExpiry("questionNumber")) {
+        setWithExpiry("questionNumber", 0, midnight.getTime())
+        setWithExpiry("showSummary", false, midnight.getTime())
+        setWithExpiry("score", 0, midnight.getTime())
+    }
+
+    var storedQuestionNumber = parseInt(getWithExpiry("questionNumber"));
+    var storedShowSummary = getWithExpiry("showSummary");
+    var storedScore = parseInt(getWithExpiry("score"));
+
+    const [questionNumber, setQuestionNumber] = useState(storedQuestionNumber);
+    const [score, setScore] = useState(storedScore);
     const [wrongNumberArray, setWrongNumberArray] = useState([]);
     const [showNext, setShowNext] = useState(false);
     const [showButtons, setShowButtons] = useState(true);
     const [showSummaryButton, setShowSummaryButton] = useState(false);
-    const [showSummary, setShowSummary] = useState(false);
+    const [showSummary, setShowSummary] = useState(storedShowSummary);
     const [correct, setCorrect] = useState(false);
     const [wrong, setWrong] = useState(false);
     const answerArray = [];
@@ -64,12 +103,15 @@ const Content = props => {
     }
 
     const clickedRight = () => {
+        setWithExpiry("score", score + 1, midnight.getTime())
         setScore(score + 1);
         setShowButtons(false);
         setCorrect(true);
         if (questionNumber < 4) {
+            setWithExpiry("questionNumber", questionNumber + 1, midnight.getTime())
             setShowNext(true);
         } else {
+            setWithExpiry("showSummary", true, midnight.getTime())
             setShowSummaryButton(true);
         }
     }
@@ -78,8 +120,10 @@ const Content = props => {
         setShowButtons(false);
         setWrong(true);
         if (questionNumber < 4) {
+            setWithExpiry("questionNumber", questionNumber + 1, midnight.getTime())
             setShowNext(true);
         } else {
+            setWithExpiry("showSummary", true, midnight.getTime())
             setShowSummaryButton(true);
         }
     }

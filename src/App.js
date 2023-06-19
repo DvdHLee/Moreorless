@@ -11,8 +11,8 @@ import About from './components/About';
 import Settings from './components/Settings';
 
 function App() {
-  const [showOptions, setShowOptions] = useState(true);
-  const [showInfo, setShowInfo] = useState(true);
+  const [showOptions, setShowOptions] = useState(localStorage.getItem("score") === null);
+  const [showInfo, setShowInfo] = useState(localStorage.getItem("score") === null);
   const [showStats, setShowStats] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -79,6 +79,8 @@ function App() {
     setShowStats(false);
     setShowAbout(false);
   }
+
+  console.log(localStorage.getItem("finalscores"));
 
   return (
     <div className="App">
