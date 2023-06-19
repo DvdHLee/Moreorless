@@ -11,8 +11,8 @@ import About from './components/About';
 import Settings from './components/Settings';
 
 function App() {
-  const [showOptions, setShowOptions] = useState(false);
-  const [showInfo, setShowInfo] = useState(false);
+  const [showOptions, setShowOptions] = useState(true);
+  const [showInfo, setShowInfo] = useState(true);
   const [showStats, setShowStats] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -91,10 +91,10 @@ function App() {
         )}
       </div>
       <Content></Content>
-      <Info showInfo={showInfo}></Info>
-      <Stats showStats={showStats}></Stats>
-      <About showAbout={showAbout}></About>
-      <Settings showSettings={showSettings}></Settings>
+      <Info showInfo={showInfo} onClickedExit={onClickedExit}></Info>
+      <Stats showStats={showStats} onClickedExit={onClickedExit}></Stats>
+      <About showAbout={showAbout} onClickedExit={onClickedExit}></About>
+      <Settings showSettings={showSettings} onClickedExit={onClickedExit}></Settings>
     </div>
   );
 }

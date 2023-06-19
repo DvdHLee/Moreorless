@@ -7,11 +7,22 @@
 }
 
 .infobox {
+    position: relative;
     z-index: 3;
     width: 500px;
-    height: 500px;
+    height: fit-content;
     margin: auto;
     background: white;
     border-radius: 20px;
     box-shadow: 0px 0px 30px rgb(190, 190, 190);
+    padding: 0 20px;
+}
+
+.optiontitle {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.exampleimg {
+    width: 200px;
 }

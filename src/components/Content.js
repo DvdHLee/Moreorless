@@ -9,7 +9,10 @@ const Content = props => {
     const [wrongNumberArray, setWrongNumberArray] = useState([]);
     const [showNext, setShowNext] = useState(false);
     const [showButtons, setShowButtons] = useState(true);
+    const [showSummaryButton, setShowSummaryButton] = useState(false);
     const [showSummary, setShowSummary] = useState(false);
+    const [correct, setCorrect] = useState(false);
+    const [wrong, setWrong] = useState(false);
     const answerArray = [];
 
     const questionArray = [
@@ -23,8 +26,8 @@ const Content = props => {
     const numberArray = questionArray.map((data) => data.match(/\d+/));
 
     useEffect(() => {
-        setWrongNumberArray(numberArray.map(randomizeFN));
-    }, []);
+        setWrongNumberArray(numberArray.map(randomizeFN));  // eslint-disable-next-line
+    }, []); 
 
     function randomizeFN(number) {
         const deviation = Math.floor(Math.random() * (30 - 10 + 1) + 10) //deviation 10-30%
@@ -47,6 +50,8 @@ const Content = props => {
     }
 
     const clickedNext = () => {
+        setCorrect(false);
+        setWrong(false);
         if (questionNumber < 4) {
             setQuestionNumber(questionNumber + 1);
             setShowButtons(true);
@@ -55,67 +60,74 @@ const Content = props => {
     }
 
     const clickedSummary = () => {
-
+        setShowSummary(true);
     }
 
     const clickedRight = () => {
         setScore(score + 1);
         setShowButtons(false);
+        setCorrect(true);
         if (questionNumber < 4) {
             setShowNext(true);
         } else {
-            setShowSummary(true);
+            setShowSummaryButton(true);
         }
     }
 
     const clickedWrong = () => {
         setShowButtons(false);
+        setWrong(true);
         if (questionNumber < 4) {
             setShowNext(true);
         } else {
-            setShowSummary(true);
+            setShowSummaryButton(true);
         }
     }
 
     return (
-        <div className="content">
-            <p className="questionnumber">Question {questionNumber + 1}</p>
-            <p className="score">Score: {score}</p>
-            <p className="question">{wrongQuestionArray[questionNumber]}</p>
-            {(answerArray[questionNumber] == 0)
-                ? <div>
-                    <button className={showButtons ? "questionchoicetop" : "disappear"} onClick={clickedRight}>
-                        <img className="questionchoiceimg" src="/assets/more.png" alt="more"></img>
-                    </button>
-                    <div className="answertop">{numberArray[questionNumber]}</div>
-                    <button className="questionchoicemid">
-                        <p className="exact">{wrongNumberArray[questionNumber]}</p>
-                    </button>
-                    <button className={showButtons ? "questionchoicebot" : "disappear"} onClick={clickedWrong}>
-                        <img className="questionchoiceimg" src="/assets/less.png" alt="less"></img>
-                    </button>
-                    <div className="answerbot">
-                        <img className="redx" src="/assets/redx.png" alt="red x"></img>
+        <div>
+            <div className={showSummary ? "disappear" : "content"}>
+                <p className="questionnumber">Question {questionNumber + 1}</p>
+                <p className="score">Score: {score}</p>
+                <p className="question">{wrongQuestionArray[questionNumber]}</p>
+                {(answerArray[questionNumber] === 0)
+                    ? <div>
+                        <button className={showButtons ? "questionchoicetop" : "disappear"} onClick={clickedRight}>
+                            <img className="questionchoiceimg" src="/assets/more.png" alt="more"></img>
+                        </button>
+                        <div className="answertop" style={(correct && !wrong) ? {boxShadow: "0 0 15px rgb(44, 187, 75)"} : {}}>{numberArray[questionNumber]}</div>
+                        <button className="questionchoicemid">
+                            <p className="exact">{wrongNumberArray[questionNumber]}</p>
+                        </button>
+                        <button className={showButtons ? "questionchoicebot" : "disappear"} onClick={clickedWrong}>
+                            <img className="questionchoiceimg" src="/assets/less.png" alt="less"></img>
+                        </button>
+                        <div className="answerbot" style={(!correct && wrong) ? {boxShadow: "0 0 15px rgb(145, 0, 0)"} : {}}>
+                            <img className="redx" src="/assets/redx.png" alt="red x"></img>
+                        </div>
                     </div>
-                </div>
-                : <div>
-                    <button className={showButtons ? "questionchoicetop" : "disappear"} onClick={clickedWrong}>
-                        <img className="questionchoiceimg" src="/assets/more.png" alt="more"></img>
-                    </button>
-                    <div className="answertop">
-                        <img className="redx" src="/assets/redx.png" alt="red x"></img>
+                    : <div>
+                        <button className={showButtons ? "questionchoicetop" : "disappear"} onClick={clickedWrong}>
+                            <img className="questionchoiceimg" src="/assets/more.png" alt="more"></img>
+                        </button>
+                        <div className="answertop" style={(!correct && wrong) ? {boxShadow: "0 0 15px rgb(145, 0, 0)"} : {}}>
+                            <img className="redx" src="/assets/redx.png" alt="red x"></img>
+                        </div>
+                        <button className="questionchoicemid">
+                            <p className="exact">{wrongNumberArray[questionNumber]}</p>
+                        </button>
+                        <button className={showButtons ? "questionchoicebot" : "disappear"} onClick={clickedRight}>
+                            <img className="questionchoiceimg" src="/assets/less.png" alt="less"></img>
+                        </button>
+                        <div className="answerbot" style={(correct && !wrong) ? {boxShadow: "0 0 15px rgb(44, 187, 75)"} : {}}>{numberArray[questionNumber]}</div>
                     </div>
-                    <button className="questionchoicemid">
-                        <p className="exact">{wrongNumberArray[questionNumber]}</p>
-                    </button>
-                    <button className={showButtons ? "questionchoicebot" : "disappear"} onClick={clickedRight}>
-                        <img className="questionchoiceimg" src="/assets/less.png" alt="less"></img>
-                    </button>
-                    <div className="answerbot">{numberArray[questionNumber]}</div>
-                </div>
-            }
-            <button className={showNext ? "next" : "disappear"} onClick={clickedNext}>Next</button>
-            <button className={showSummary ? "next" : "disappear"} onClick={clickedSummary}>Summary</button>
+                }
+                <button className={showNext ? "next" : "disappear"} onClick={clickedNext}>Next</button>
+                <button className={showSummaryButton ? "next" : "disappear"} onClick={clickedSummary}>Summary</button>
+            </div>
+            <div className={showSummary ? "summary" : "disappear"}>
+                <p>Score: {score}</p>
+            </div>
         </div>
     )
 }

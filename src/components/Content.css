@@ -161,3 +161,11 @@
   width: 60px;
   height: 60px;
 }
+
+.summary {
+  position: absolute;
+  top: 100px;
+  width: 100%;
+  height: 500px;
+  font-size: 30px;
+}
