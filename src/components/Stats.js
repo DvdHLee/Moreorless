@@ -22,13 +22,24 @@ function getWithExpiry(key) {
 function getFinalScores(key) {
     const finalscores = localStorage.getItem(key);
     if (!finalscores) {
-        return "Not Played Yet";
+        return null;
     }
 
     return finalscores;
 }
 
+function getGamesPlayed(finalscores) {
+    if (!finalscores) {
+        return 0;
+    }
+    var scorearraystr = finalscores.split(" ");
+    return scorearraystr.length;
+}
+
 function getAvgScores(finalscores) {
+    if (!finalscores) {
+        return 0;
+    }
     var scorearraystr = finalscores.split(" ");
     var scorearrayint = scorearraystr.map(function (item) {
         return parseInt(item, 10);
@@ -40,6 +51,9 @@ function getAvgScores(finalscores) {
 }
 
 function getMax(finalscores) {
+    if (!finalscores) {
+        return 0;
+    }
     var scorearraystr = finalscores.split(" ");
     var scorearrayint = scorearraystr.map(function (item) {
         return parseInt(item, 10);
@@ -49,12 +63,30 @@ function getMax(finalscores) {
 }
 
 function getMin(finalscores) {
+    if (!finalscores) {
+        return 0;
+    }
     var scorearraystr = finalscores.split(" ");
     var scorearrayint = scorearraystr.map(function (item) {
         return parseInt(item, 10);
     });
 
     return Math.min(...scorearrayint);
+}
+
+function getStreak() {
+    if (!getWithExpiry("streak")) {
+        return 0;
+    } else {
+        return getWithExpiry("streak");
+    }
+}
+
+function getMaxStreak() {
+    if (!localStorage.getItem("maxstreak")) {
+        return 0;
+    }
+    return localStorage.getItem("maxstreak");
 }
 
 const Stats = props => {
@@ -82,9 +114,9 @@ const Stats = props => {
                 <div className="statsnumberlist">
                     <p>{getWithExpiry("score")}</p>
                     <p>{getAvgScores(getFinalScores("finalscores"))}</p>
-                    <p>17</p>
-                    <p>{localStorage.getItem("streak")}</p>
-                    <p>6</p>
+                    <p>{getGamesPlayed(getFinalScores("finalscores"))}</p>
+                    <p>{getStreak()}</p>
+                    <p>{getMaxStreak()}</p>
                     <p>{getMax(getFinalScores("finalscores"))}</p>
                     <p>{getMin(getFinalScores("finalscores"))}</p>
                 </div>

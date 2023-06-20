@@ -29,6 +29,14 @@ function getWithExpiry(key) {
     return item.value;
 }
 
+function setMaxStreak(value) {
+    localStorage.setItem("maxstreak", value);
+}
+
+function getMaxStreak() {
+    return localStorage.getItem("maxstreak");
+}
+
 function setFinalScore(key, value) {
     const values = localStorage.getItem(key);
     if (!values) {
@@ -154,8 +162,18 @@ const Content = props => {
             setWithExpiry("questionNumber", questionNumber + 1, midnight.getTime())
             setShowNext(true);
         } else {
-            const streak = parseInt(localStorage.getItem("streak"));
-            localStorage.setItem("streak", streak + 1);
+            if (!getWithExpiry("streak")) {
+                setWithExpiry("streak", 1, nextmidnight.getTime());
+                if (!getMaxStreak()) {
+                    setMaxStreak(1);
+                }
+            } else {
+                if (parseInt(getWithExpiry("streak")) > parseInt(getMaxStreak())) {
+                    setMaxStreak(getWithExpiry("streak"));
+                }
+                const currentstreak = getWithExpiry("streak");
+                setWithExpiry("streak", currentstreak + 1, nextmidnight.getTime());
+            }
             setFinalScore("finalscores", score + 1);
             setWithExpiry("showSummary", true, midnight.getTime())
             setShowSummaryButton(true);
@@ -169,8 +187,18 @@ const Content = props => {
             setWithExpiry("questionNumber", questionNumber + 1, midnight.getTime())
             setShowNext(true);
         } else {
-            const streak = parseInt(localStorage.getItem("streak"));
-            localStorage.setItem("streak", streak + 1);
+            if (!getWithExpiry("streak")) {
+                setWithExpiry("streak", 1, nextmidnight.getTime());
+                if (!getMaxStreak()) {
+                    setMaxStreak(1);
+                }
+            } else {
+                if (parseInt(getWithExpiry("streak")) > parseInt(getMaxStreak())) {
+                    setMaxStreak(getWithExpiry("streak"));
+                }
+                const currentstreak = getWithExpiry("streak");
+                setWithExpiry("streak", currentstreak + 1, nextmidnight.getTime());
+            }
             setFinalScore("finalscores", score);
             setWithExpiry("showSummary", true, midnight.getTime())
             setShowSummaryButton(true);
