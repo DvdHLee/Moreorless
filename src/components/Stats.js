@@ -105,7 +105,7 @@ const Stats = props => {
                 <div className="statsnamelist">
                     <p>Today's Score</p>
                     <p>Average Score</p>
-                    <p>Played Games</p>
+                    <p>Ganes Played</p>
                     <p>Streak</p>
                     <p>Max Streak</p>
                     <p>Best Score</p>
