@@ -39,9 +39,36 @@ function setFinalScore(key, value) {
     }
 }
 
+function getFinalScores(key) {
+    const finalscores = localStorage.getItem(key);
+    if (!finalscores) {
+        return "Not Played Yet";
+    }
+
+    return finalscores;
+}
+
+function getAvgScores(finalscores) {
+    var scorearraystr = finalscores.split(" ");
+    var scorearrayint = scorearraystr.map(function (item) {
+        return parseInt(item, 10);
+    });
+
+    const avg = scorearrayint.reduce((partialSum, a) => partialSum + a, 0) / scorearrayint.length;
+
+    return avg.toFixed(2);
+}
+
 const Content = props => {
     const midnight = new Date();
     midnight.setHours(24, 0, 0, 0);
+
+    const nextmidnight = new Date();
+    nextmidnight.setHours(48, 0, 0, 0);
+
+    if (!localStorage.getItem("streak")) {
+        localStorage.setItem("streak", 0);
+    }
 
     if (!getWithExpiry("questionNumber")) {
         setWithExpiry("questionNumber", 0, midnight.getTime())
@@ -127,6 +154,8 @@ const Content = props => {
             setWithExpiry("questionNumber", questionNumber + 1, midnight.getTime())
             setShowNext(true);
         } else {
+            const streak = parseInt(localStorage.getItem("streak"));
+            localStorage.setItem("streak", streak + 1);
             setFinalScore("finalscores", score + 1);
             setWithExpiry("showSummary", true, midnight.getTime())
             setShowSummaryButton(true);
@@ -140,6 +169,8 @@ const Content = props => {
             setWithExpiry("questionNumber", questionNumber + 1, midnight.getTime())
             setShowNext(true);
         } else {
+            const streak = parseInt(localStorage.getItem("streak"));
+            localStorage.setItem("streak", streak + 1);
             setFinalScore("finalscores", score);
             setWithExpiry("showSummary", true, midnight.getTime())
             setShowSummaryButton(true);
@@ -193,7 +224,7 @@ const Content = props => {
             </div>
             <div className={showSummary ? "summary" : "disappear"}>
                 <p>Today's Score: {score}</p>
-                <p>Average Score: 3.4</p>
+                <p>Average Score: {getAvgScores(getFinalScores("finalscores"))}</p>
                 <p className="questionreviewtitle">Question Review</p>
                 <div className="questionreview">
                     {questionArray[0]}

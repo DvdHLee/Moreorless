@@ -9,10 +9,26 @@
 .statsbox {
     position: relative;
     z-index: 3;
-    width: 500px;
-    height: 500px;
+    width: 320px;
+    height: 360px;
     margin: auto;
     background: white;
     border-radius: 20px;
     box-shadow: 0px 0px 30px rgb(190, 190, 190);
+}
+
+.statsnamelist {
+    position: absolute;
+    left: 50px;
+    width: 110px;
+    height: fit-content;
+    text-align: left;
+}
+
+.statsnumberlist {
+    position: absolute;
+    right: 50px;
+    width: 110px;
+    height: fit-content;
+    text-align: right;
 }
