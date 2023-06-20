@@ -9,6 +9,7 @@ const Stats = props => {
 
     return (
         <div className={props.showStats ? "stats" : "disappear"}>
+            <div className="backdrop" onClick={clickedExit}></div>
             <div className="statsbox">
                 <p className="optiontitle">Statistics</p>
                 <button className="optionsexit" onClick={clickedExit}>

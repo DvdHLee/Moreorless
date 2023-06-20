@@ -11,7 +11,7 @@ import About from './components/About';
 import Settings from './components/Settings';
 
 function App() {
-  const [showOptions, setShowOptions] = useState(localStorage.getItem("score") === null);
+  const [showOptions, setShowOptions] = useState(false);
   const [showInfo, setShowInfo] = useState(localStorage.getItem("score") === null);
   const [showStats, setShowStats] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
@@ -92,7 +92,7 @@ function App() {
           </animated.div> : ''
         )}
       </div>
-      <Content></Content>
+      <Content onClickedStats={onClickedStats} onClickedExit={onClickedExit}></Content>
       <Info showInfo={showInfo} onClickedExit={onClickedExit}></Info>
       <Stats showStats={showStats} onClickedExit={onClickedExit}></Stats>
       <About showAbout={showAbout} onClickedExit={onClickedExit}></About>

@@ -9,6 +9,7 @@ const Info = props => {
     
     return (
         <div className={props.showInfo ? "info" : "disappear"}>
+            <div className="backdrop" onClick={clickedExit}></div>
             <div className="infobox">
                 <p className="optiontitle">How to Play</p>
                 <p>Each round, a question will be presented with a missing number. 

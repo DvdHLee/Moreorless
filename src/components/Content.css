@@ -169,3 +169,33 @@
   height: 500px;
   font-size: 30px;
 }
+
+.questionreviewtitle {
+  margin-bottom: 10px;
+}
+
+.questionreview {
+  width: 500px;
+  height: fit-content;
+  margin: auto;
+  font-size: 20px;
+  font-style: italic;
+  color:rgb(38, 152, 245);
+}
+ 
+.allstatsbutton {
+  margin-top: 50px;
+  width: 100px;
+  font-family: "Patrick Hand", sans-serif;
+  background-color: white;
+  border: 1px solid #393939;
+  border-radius: 10px;
+}
+
+.allstatsbutton:hover {
+  cursor: pointer;
+}
+
+.allstatsbutton:active {
+  box-shadow: 0 0 15px rgb(66, 66, 66);
+}
