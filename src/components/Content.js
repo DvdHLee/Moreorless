@@ -168,11 +168,11 @@ const Content = props => {
                     setMaxStreak(1);
                 }
             } else {
+                const currentstreak = getWithExpiry("streak");
+                setWithExpiry("streak", currentstreak + 1, nextmidnight.getTime());
                 if (parseInt(getWithExpiry("streak")) > parseInt(getMaxStreak())) {
                     setMaxStreak(getWithExpiry("streak"));
                 }
-                const currentstreak = getWithExpiry("streak");
-                setWithExpiry("streak", currentstreak + 1, nextmidnight.getTime());
             }
             setFinalScore("finalscores", score + 1);
             setWithExpiry("showSummary", true, midnight.getTime())
@@ -193,11 +193,11 @@ const Content = props => {
                     setMaxStreak(1);
                 }
             } else {
+                const currentstreak = getWithExpiry("streak");
+                setWithExpiry("streak", currentstreak + 1, nextmidnight.getTime());
                 if (parseInt(getWithExpiry("streak")) > parseInt(getMaxStreak())) {
                     setMaxStreak(getWithExpiry("streak"));
                 }
-                const currentstreak = getWithExpiry("streak");
-                setWithExpiry("streak", currentstreak + 1, nextmidnight.getTime());
             }
             setFinalScore("finalscores", score);
             setWithExpiry("showSummary", true, midnight.getTime())
