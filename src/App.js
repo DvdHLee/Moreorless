@@ -80,8 +80,6 @@ function App() {
     setShowAbout(false);
   }
 
-  console.log(localStorage.getItem("finalscores"));
-
   return (
     <div className="App">
       <Header onClickedMore={onClickedMore}></Header>

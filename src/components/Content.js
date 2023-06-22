@@ -105,13 +105,56 @@ const Content = props => {
     const [wrong, setWrong] = useState(false);
     const answerArray = [];
 
-    const questionArray = [
-        "The United States is comprised of 50 states",
-        "There are 24 hours in a day",
-        "The solar system has 8 planets",
-        "The latest Iphone is the iphone 14",
-        "The American Civil war lasted 4 years"
-    ];
+    var now = new Date();
+    var dayindex = now.getDay();
+
+    const allQuestionsArray = [
+        "The Earth's circumference at the equator is approximately 24901 miles.",
+        "The Eiffel Tower in Paris is 330 meters tall.",
+        "The speed of sound at sea level is approximately 343 meters per second.",
+        "The average lifespan of a housefly is about 28 days.",
+        "Mount Everest, the highest peak on Earth, stands at an elevation of 29032 feet.",
+        "The Golden Gate Bridge in San Francisco is 8981 feet long.",
+        "The number of teaspoons in a tablespoon is 3.",
+        "The distance from the Earth to the Sun, on average, is about 93 million miles.",
+        "The number of symphonies composed by Ludwig van Beethoven is 9.",
+        "The boiling point of water at sea level is 100 degrees Celsius.",
+        "The average lifespan of a domestic cat is around 15 years.",
+        "The speed record for the fastest land animal, the cheetah, is about 70 miles per hour.",
+        "The atomic number of carbon is 6.",
+        "The average human heart beats around 100 thousand times per day.",
+        "The Great Wall of China is approximately 13171 miles long.",
+        "The standard human body temperature is around 98.6 degrees F.",
+        "The Statue of Liberty in New York stands at a height of 305 feet.",
+        "The number of chromosomes in a human cell is 46.",
+        "The diameter of the Sun is approximately 865370 miles.",
+        "The longest river in the world, the Nile, stretches for about 4132 miles.",
+        "The average adult human body is composed of around 60% water.",
+        "The deepest part of the world's oceans, the Mariana Trench, reaches a depth of 10935 meters.",
+        "The Leaning Tower of Pisa tilts at an angle of approximately 4 degrees.",
+        "The human brain weighs about 3 pounds",
+        "The number of elements in the periodic table is 118.",
+        "The United States Constitution has 27 amendments.",
+        "The number of bones in the human hand is 27.",
+        "The number of keys on a standard piano is 88.",
+        "The number of sides on a heptagon is 7.",
+        "The freezing point of water is 0 degrees Celsius.",
+        "The average diameter of Earth's moon is about 2159 miles.",
+        "The speed required for an object to break free from Earth's gravitational pull is approximately 25020 miles per hour.",
+        "The estimated age of the universe is approximately 14 billion years.",
+        "The number of teeth in a full set of adult human teeth, including wisdom teeth, is 32.",
+        "The number of Academy Awards won by Walt Disney throughout his career was 26."];
+
+    // const questionArray = [
+    //     "The United States is comprised of 50 states",
+    //     "There are 24 hours in a day",
+    //     "The solar system has 8 planets",
+    //     "The latest Iphone is the iphone 14",
+    //     "The American Civil war lasted 4 years"
+    // ];
+
+    //Currently cycles through only 35 questions in this Beta 
+    const questionArray = allQuestionsArray.slice(dayindex * 5, (dayindex * 5) + 5);
 
     const numberArray = questionArray.map((data) => data.match(/\d+/));
 

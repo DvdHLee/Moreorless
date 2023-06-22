@@ -34,14 +34,14 @@ const Settings = props => {
                 <div className="settingoption">
                     <label className="switch">
                         <input type="checkbox" onClick={clickedDarkNotImplementedYet}></input>
-                        <span class="slider"></span>
+                        <span className="slider"></span>
                     </label>
                     <p className="settingoptiontext">Dark Theme (coming soon)</p>
                 </div>
                 <div className="settingoption">
                     <label className="switch">
                         <input type="checkbox" onClick={clickedHardNotImplementedYet}></input>
-                        <span class="slider"></span>
+                        <span className="slider"></span>
                     </label>
                     <p className="settingoptiontext">Hard Mode (coming soon)</p>
                 </div>
