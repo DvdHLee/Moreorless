@@ -19,17 +19,17 @@ const About = props => {
                 </p>
                 <div className="aboutlinks">
                     <a className="aboutlink" href="https://dvdhlee.github.io/Portfolio/" title="" target="_blank" rel="noreferrer noopener">
-                        <img className="aboutlinkimg" src="/assets/bag.png" alt="portfolio icon"></img>
+                        <img className="aboutlinkimg" src="./assets/bag.png" alt="portfolio icon"></img>
                     </a>
                     <a className="aboutlink" href="https://github.com/DvdHLee/Moreorless" title="" target="_blank" rel="noreferrer noopener">
-                        <img className="aboutlinkimg" src="/assets/github.png" alt="linkedin icon"></img>
+                        <img className="aboutlinkimg" src="./assets/github.png" alt="linkedin icon"></img>
                     </a>
                     <a className="aboutlink" href="https://www.linkedin.com/in/dvdhyelee/" title="" target="_blank" rel="noreferrer noopener">
-                        <img className="aboutlinkimg" src="/assets/linkedin.png" alt="linkedin icon"></img>
+                        <img className="aboutlinkimg" src="./assets/linkedin.png" alt="linkedin icon"></img>
                     </a>
                 </div>
                 <button className="optionsexit" onClick={clickedExit}>
-                    <img className="optionsexitimg" src="/assets/x.png" alt="x"></img>
+                    <img className="optionsexitimg" src="./assets/x.png" alt="x"></img>
                 </button>
             </div>
         </div>

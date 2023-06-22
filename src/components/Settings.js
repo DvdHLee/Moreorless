@@ -29,7 +29,7 @@ const Settings = props => {
             <div className="settingsbox">
                 <p className="optiontitle">Settings</p>
                 <button className="optionsexit" onClick={clickedExit}>
-                    <img className="optionsexitimg" src="/assets/x.png" alt="x"></img>
+                    <img className="optionsexitimg" src="./assets/x.png" alt="x"></img>
                 </button>
                 <div className="settingoption">
                     <label className="switch">

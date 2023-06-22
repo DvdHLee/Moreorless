@@ -100,7 +100,7 @@ const Stats = props => {
             <div className="statsbox">
                 <p className="optiontitle">Statistics</p>
                 <button className="optionsexit" onClick={clickedExit}>
-                    <img className="optionsexitimg" src="/assets/x.png" alt="x"></img>
+                    <img className="optionsexitimg" src="./assets/x.png" alt="x"></img>
                 </button>
                 <div className="statsnamelist">
                     <p>Today's Score</p>
