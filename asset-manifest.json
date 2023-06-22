@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Moreorless/static/css/main.e69e2ebf.css",
-    "main.js": "/Moreorless/static/js/main.1c033e79.js",
+    "main.js": "/Moreorless/static/js/main.98dc1d46.js",
     "static/js/787.edae33a4.chunk.js": "/Moreorless/static/js/787.edae33a4.chunk.js",
     "index.html": "/Moreorless/index.html",
     "main.e69e2ebf.css.map": "/Moreorless/static/css/main.e69e2ebf.css.map",
-    "main.1c033e79.js.map": "/Moreorless/static/js/main.1c033e79.js.map",
+    "main.98dc1d46.js.map": "/Moreorless/static/js/main.98dc1d46.js.map",
     "787.edae33a4.chunk.js.map": "/Moreorless/static/js/787.edae33a4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e69e2ebf.css",
-    "static/js/main.1c033e79.js"
+    "static/js/main.98dc1d46.js"
   ]
 }
